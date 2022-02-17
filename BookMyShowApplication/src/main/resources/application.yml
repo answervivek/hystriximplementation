@@ -1,0 +1,25 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+hystrix:
+  command:
+    default:
+      fallback:
+        enabled: 'true'
+      execution:
+        isolation:
+          semaphore:
+            maxConcurrentRequests: '100000'
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: '1000'
+        timeout:
+          enabled: 'true'
+      circuitBreaker:
+        enabled: 'true'
+  dashboard:
+    proxy-stream-allow-list: localhost
+server:
+  port: '8080'
